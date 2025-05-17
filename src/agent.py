@@ -3,9 +3,13 @@ from langchain.chat_models import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
 import os
+from dotenv import load_dotenv
+import os
 
-# === Set up OpenAI API Key ===
-os.environ["OPENAI_API_KEY"] = "your-openai-api-key-here"
+
+load_dotenv()  # Load from .env
+
+
 
 # === LangChain Memory and Chat Model ===
 memory = ConversationBufferMemory()
