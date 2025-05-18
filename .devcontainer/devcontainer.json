@@ -6,7 +6,7 @@
     "settings": {
       "terminal.integrated.defaultProfile.linux": "bash"
     },
-    "postCreateCommand": "uv pip sync requirements.lock",
+    "postCreateCommand": "uv pip sync --system requirements.lock",
     "features": {},
     "customizations": {
       "vscode": {

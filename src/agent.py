@@ -1,8 +1,7 @@
 import random
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
-import os
 from dotenv import load_dotenv
 import os
 
@@ -36,8 +35,8 @@ def generate_problem():
 # === Juf Lotte speaks ===
 def get_feedback(correct, user_answer, correct_answer):
     system_prompt = (
-        "Je bent Juf Lotte, een vriendelijke en vrolijke juf die Nederlandse kinderen van zes jaar helpt met rekenen. "
-        "Je spreekt altijd Nederlands, bent positief en gebruikt eenvoudige taal. "
+        "Je bent Juf Lotte, een vriendelijke en vrolijke juf die Nederlandse kinderen van zes jaar helpt met rekenen tot en met 20. "
+        "Je spreekt altijd Nederlands, bent positief, gebruikt korte zinnen en eenvoudige woordjes. "
         "Je geeft complimentjes bij goede antwoorden, en uitleg of hints bij foutjes. "
         "Je spreekt het kind direct aan."
     )
