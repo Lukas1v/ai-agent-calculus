@@ -1,1 +1,62 @@
-/workspaces/ai-agent-calculus/.env
+# --- General ---
+*.log
+*.tmp
+*.bak
+*.swp
+*.DS_Store
+Thumbs.db
+
+# --- Python / others  ---
+__pycache__/
+.env
+*/.env
+
+
+# --- VS Code and Dev Container ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+.devcontainer/devcontainer.env
+.devcontainer/.env
+.devcontainer/*.local.*
+.devcontainer/*.secrets.*
+
+
+# --- SSH keys (never commit these) ---
+**/id_rsa
+**/id_rsa.pub
+**/id_ed25519
+**/id_ed25519.pub
+**/known_hosts
+**/.ssh/
+*.pem
+
+# --- Python specifics (if used) ---
+*.py[cod]
+*.pyo
+.Python
+*.coverage
+coverage.*
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# --- OS-specific ---
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+ehthumbs.db
+Icon?
+Desktop.ini
+$RECYCLE.BIN/
+
+# --- Test reports / caches ---
+.tox/
+.nox/
+coverage/
+pytest_cache/
+.cache/
