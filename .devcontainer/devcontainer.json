@@ -1,12 +1,13 @@
 {
     "name": "dutch-math-agent",
+    "remoteUser": "root",
     "build": {
       "dockerfile": "Dockerfile"
     },
     "settings": {
       "terminal.integrated.defaultProfile.linux": "bash"
     },
-    "postCreateCommand": "uv pip sync --system requirements.lock",
+
     "features": {},
     "customizations": {
       "vscode": {
@@ -18,5 +19,10 @@
     },
     "remoteEnv": {
       "PYTHONPATH": "/workspace"
-    }
-  }
+    },
+  "mounts": [
+    "source=${env:USERPROFILE}\\.ssh\\id_ed25519,target=/root/.ssh/id_ed25519,type=bind,consistency=cached",
+    "source=${env:USERPROFILE}\\.ssh\\known_hosts,target=/root/.ssh/known_hosts,type=bind,consistency=cached"
+  ],
+    "postCreateCommand": "chmod 600 ~/.ssh/id_ed25519 && uv pip sync --system requirements.lock"
+}
