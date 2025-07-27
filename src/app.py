@@ -55,6 +55,11 @@ else:
 
         if correct:
             st.session_state.correct_count += 1
+
+            # 🎉 Show a unicorn gif at every multiple of 10 correct answers
+            if st.session_state.correct_count % 10 == 0:
+                st.image("src/assets/unicorn.gif", caption="🎉 Hoera! Goed bezig!", use_container_width=True)
+
         feedback = get_feedback(conversation, correct, user_answer, st.session_state.current_answer)
         st.session_state.feedback_history.append({
             "type": "success" if correct else "error",
