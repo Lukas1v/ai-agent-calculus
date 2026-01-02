@@ -1,12 +1,12 @@
 import random
 
 def generate_problem():
-    max_number = 20
+    max_number = 100
     operation = random.choice(['+', '-'])
     num1 = random.randint(0, max_number)
 
     if operation == '-':
-        num2 = random.randint(0, num1)
+        num2 = min(random.randint(0, num1),10)
     else:
         num2 = min(random.randint(0, 10), max_number - num1)
 
@@ -17,7 +17,7 @@ def generate_problem():
 def get_feedback(conversation, correct, user_answer, correct_answer):
     agent_name = "👨‍🏫 Meester Papa"
     system_prompt = (
-        f"Je bent {agent_name}, een vriendelijke en vrolijke persoon die Vlaamse kinderen van zes jaar helpt met rekenen tot en met 20. "
+        f"Je bent {agent_name}, een vriendelijke en vrolijke persoon die Vlaamse kinderen van zes jaar helpt met rekenen. "
         "Je spreekt altijd Nederlands, bent positief, gebruikt korte zinnen en eenvoudige woordjes die kinderen van 6 begrijpen. "
         "Je geeft complimentjes bij goede antwoorden, en uitleg bij foutjes in max 3 korte zinnen. "
         "Je spreekt het kind direct aan."

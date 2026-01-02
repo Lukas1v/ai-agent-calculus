@@ -9,6 +9,7 @@ from ui.scoreboard import render_scoreboard
 from ui.feedback import render_feedback
 import yaml
 from pathlib import Path
+import random
 
 # Load YAML config once at startup
 CONFIG_PATH = Path(__file__).parent / "config.yaml"
@@ -53,7 +54,7 @@ else:
     st.markdown(f"### 🤔 {st.session_state.current_question}")
     col1, col2 = st.columns([3, 1])
     with col1:
-        user_answer = st.number_input("Jouw antwoord:", min_value=0, max_value=40, step=1, key="answer_input")
+        user_answer = st.number_input("Jouw antwoord:", min_value=0, max_value=100, step=1, key="answer_input")
     with col2:
         st.markdown("<br>", unsafe_allow_html=True)
         submit_answer = st.button("✅ Antwoord", type="primary")
@@ -65,10 +66,11 @@ else:
         if correct:
             st.session_state.correct_count += 1
 
-            # 🎉 Show a unicorn gif at every multiple of 10 correct answers
+            # 🎉 Show a gif at every multiple of 10 correct answers
             if st.session_state.correct_count % 10 == 0:
-                st.image("src/assets/unicorn.gif", caption="🎉 Hoera! Goed bezig!", use_container_width=True)
-                time.sleep(3)
+                random_gif = random.choice(list(Path("src/assets").glob("*.gif")))
+                st.image(random_gif, caption="🎉 Hoera! Goed bezig!", use_container_width=True)
+                time.sleep(7)
 
         feedback = get_feedback(conversation, correct, user_answer, st.session_state.current_answer)
         st.session_state.feedback_history = [{
