@@ -54,7 +54,7 @@ else:
     st.markdown(f"### 🤔 {st.session_state.current_question}")
     col1, col2 = st.columns([3, 1])
     with col1:
-        user_answer = st.number_input("Jouw antwoord:", min_value=0, max_value=100, step=1, key="answer_input")
+        user_answer = st.number_input("Jouw antwoord:", min_value=0, step=1, key="answer_input")
     with col2:
         st.markdown("<br>", unsafe_allow_html=True)
         submit_answer = st.button("✅ Antwoord", type="primary")

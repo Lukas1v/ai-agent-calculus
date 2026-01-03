@@ -3,12 +3,12 @@ import random
 def generate_problem():
     max_number = 100
     operation = random.choice(['+', '-'])
-    num1 = random.randint(0, max_number)
+    num1 = random.randint(1, max_number)
 
     if operation == '-':
-        num2 = min(random.randint(0, num1),10)
+        num2 = min(random.randint(1, num1),10)
     else:
-        num2 = min(random.randint(0, 10), max_number - num1)
+        num2 = min(random.randint(1, 10), max_number - num1)
 
     question = f"Wat is {num1} {operation} {num2}?"
     correct_answer = eval(f"{num1} {operation} {num2}")
