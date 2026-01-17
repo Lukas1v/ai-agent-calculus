@@ -22,7 +22,36 @@ def render_sidebar():
         """)
 
         st.markdown("---")
-        st.markdown("### 🛠️ Gemaakt met")
-        st.markdown("- Streamlit")
-        st.markdown("- LangChain") 
-        st.markdown("- OpenAI GPT")
+        st.markdown("### 🎲 Kies je oefeningen")
+
+        # Define all operation options
+        operation_options = [
+            "Optellen",
+            "Aftrekken",
+            "Tafel van 2",
+            "Tafel van 3",
+            "Tafel van 4",
+            "Tafel van 5",
+            "Tafel van 6",
+            "Tafel van 7",
+            "Tafel van 8",
+            "Tafel van 9",
+            "Tafel van 10"
+        ]
+
+        # Store selected operations in session state
+        if 'selected_operations' not in st.session_state:
+            st.session_state.selected_operations = ["Optellen", "Aftrekken"]
+
+        selected = st.multiselect(
+            "Selecteer oefeningen:",
+            options=operation_options,
+            default=st.session_state.selected_operations,
+            key="operation_selector"
+        )
+
+        # Update session state with new selection
+        if selected:
+            st.session_state.selected_operations = selected
+        else:
+            st.info("⚠️ Kies minstens één oefening!")

@@ -1,17 +1,47 @@
 import random
+import streamlit as st
 
 def generate_problem():
-    max_number = 100
-    operation = random.choice(['+', '-'])
-    num1 = random.randint(1, max_number)
+    # Get selected operations from session state
+    selected_operations = st.session_state.get('selected_operations', ["Optellen", "Aftrekken"])
 
-    if operation == '-':
-        num2 = min(random.randint(1, num1),10)
+    if not selected_operations:
+        selected_operations = ["Optellen", "Aftrekken"]
+
+    # Choose a random operation from selected
+    chosen_operation = random.choice(selected_operations)
+
+    if chosen_operation == "Optellen":
+        # Addition
+        num1 = random.randint(1, 100)
+        num2 = min(random.randint(1, 10), 100 - num1)
+        question = f"Wat is {num1} + {num2}?"
+        correct_answer = num1 + num2
+
+    elif chosen_operation == "Aftrekken":
+        # Subtraction
+        num1 = random.randint(1, 100)
+        num2 = min(random.randint(1, num1), 10)
+        question = f"Wat is {num1} - {num2}?"
+        correct_answer = num1 - num2
+
     else:
-        num2 = min(random.randint(1, 10), max_number - num1)
+        # Multiplication table (e.g., "Tafel van 2")
+        table_number = int(chosen_operation.split()[-1])
 
-    question = f"Wat is {num1} {operation} {num2}?"
-    correct_answer = eval(f"{num1} {operation} {num2}")
+        # Randomly choose multiplication or division
+        if random.choice([True, False]):
+            # Multiplication
+            num2 = random.randint(1, 10)
+            question = f"Wat is {table_number} × {num2}?"
+            correct_answer = table_number * num2
+        else:
+            # Division
+            num2 = random.randint(1, 10)
+            product = table_number * num2
+            question = f"Wat is {product} ÷ {table_number}?"
+            correct_answer = num2
+
     return question, correct_answer
 
 def get_feedback(conversation, correct, user_answer, correct_answer):

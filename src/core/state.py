@@ -10,6 +10,7 @@ def initialize_state():
         st.session_state.question_correct = False
         st.session_state.feedback_history = []
         st.session_state.game_started = False
+        st.session_state.selected_operations = ["Optellen", "Aftrekken"]
 
 def reset_game():
     st.session_state.correct_count = 0
