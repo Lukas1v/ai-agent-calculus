@@ -8,7 +8,7 @@ def render_sidebar():
         2. 🤔 Bekijk de rekensom
         3. ✏️ Typ je antwoord
         4. ✅ Klik op 'Antwoord'
-        5. 💬 Lees de feedback van Meester Papa
+        5. 💬 Lees de feedback
         6. 🔄 Bij een fout antwoord, probeer opnieuw!
         """)
 

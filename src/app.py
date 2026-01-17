@@ -45,11 +45,11 @@ if not st.session_state.game_started:
 else:
     render_scoreboard(agent_display_name)
 
-    if st.session_state.current_question is None or st.session_state.question_answered:
+    if st.session_state.current_question is None or st.session_state.question_correct:
         question, answer = generate_problem()
         st.session_state.current_question = question
         st.session_state.current_answer = answer
-        st.session_state.question_answered = False
+        st.session_state.question_correct = False
 
     st.markdown(f"### 🤔 {st.session_state.current_question}")
     col1, col2 = st.columns([3, 1])
@@ -65,12 +65,14 @@ else:
 
         if correct:
             st.session_state.correct_count += 1
+            st.session_state.question_correct = True
 
             # 🎉 Show a gif at every multiple of 10 correct answers
             if st.session_state.correct_count % 10 == 0:
                 random_gif = random.choice(list(Path("src/assets").glob("*.gif")))
                 st.image(random_gif, caption="🎉 Hoera! Goed bezig!", use_container_width=True)
                 time.sleep(7)
+                
 
         feedback = get_feedback(conversation, correct, user_answer, st.session_state.current_answer)
         st.session_state.feedback_history = [{
@@ -81,7 +83,7 @@ else:
             "correct_answer": None if correct else st.session_state.current_answer
         }]
 
-        st.session_state.question_answered = True
+        
         st.rerun()
 
     render_feedback(agent_display_name)
@@ -90,7 +92,7 @@ else:
     col1, col2, col3 = st.columns([1, 1, 1])
     with col1:
         if st.button("🔄 Nieuwe Vraag"):
-            st.session_state.question_answered = True
+            st.session_state.question_correct = True
             st.rerun()
     with col2:
         if st.button("🎮 Nieuw Spel"):

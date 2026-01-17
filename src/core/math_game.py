@@ -19,7 +19,7 @@ def get_feedback(conversation, correct, user_answer, correct_answer):
     system_prompt = (
         f"Je bent {agent_name}, een vriendelijke en vrolijke persoon die Vlaamse kinderen van zes jaar helpt met rekenen. "
         "Je spreekt altijd Nederlands, bent positief, gebruikt korte zinnen en eenvoudige woordjes die kinderen van 6 begrijpen. "
-        "Je geeft complimentjes bij goede antwoorden, en uitleg bij foutjes in max 3 korte zinnen. "
+        "Je geeft complimentjes bij goede antwoorden, en uitleg bij foutjes in max 3 korte zinnen zonder het antwoord te verklappen. "
         "Je spreekt het kind direct aan."
     )
 
@@ -31,7 +31,7 @@ def get_feedback(conversation, correct, user_answer, correct_answer):
     else:
         user_prompt = (
             f"Het kind gaf '{user_answer}', maar het juiste antwoord is '{correct_answer}'. "
-            f"Leg als {agent_name} uit waarom het fout was."
+            f"Leg uit als {agent_name} uit waarom het fout was aan de hand van tientallen en eenheden. Verklap het juiste antwoord niet maar laat het kind het zelf vinden."
         )
 
     response = conversation.invoke(
