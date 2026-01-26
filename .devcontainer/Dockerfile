@@ -26,12 +26,11 @@ RUN curl -O https://www.python.org/ftp/python/3.13.0/Python-3.13.0.tgz && \
     make altinstall && \
     cd .. && rm -rf Python-3.13.0*
 
-# Install uv (universal virtualenv + pip replacement)
-RUN curl -Ls https://astral.sh/uv/install.sh | bash
-
 # Make Python 3.13 default
 RUN ln -sf /usr/local/bin/python3.13 /usr/local/bin/python && \
-    ln -sf /usr/local/bin/python3.13 /usr/bin/python && \
-    ln -sf /root/.cargo/bin/uv /usr/local/bin/uv
+    ln -sf /usr/local/bin/python3.13 /usr/bin/python
+
+# Install uv (using the standalone installer)
+RUN curl -LsSf https://astral.sh/uv/install.sh | env UV_INSTALL_DIR=/usr/local/bin sh
 
 WORKDIR /workspace
