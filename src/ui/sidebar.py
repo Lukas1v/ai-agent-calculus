@@ -28,6 +28,7 @@ def render_sidebar():
         operation_options = [
             "Optellen",
             "Aftrekken",
+            "Helft en kwart",
             "Tafel van 2",
             "Tafel van 3",
             "Tafel van 4",

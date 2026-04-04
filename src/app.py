@@ -50,11 +50,15 @@ else:
         st.session_state.current_question = question
         st.session_state.current_answer = answer
         st.session_state.question_correct = False
+        # Increment question counter to reset input field
+        if 'question_count' not in st.session_state:
+            st.session_state.question_count = 0
+        st.session_state.question_count += 1
 
     st.markdown(f"### 🤔 {st.session_state.current_question}")
     col1, col2 = st.columns([3, 1])
     with col1:
-        user_answer = st.number_input("Jouw antwoord:", min_value=0, step=1, key="answer_input")
+        user_answer = st.number_input("Jouw antwoord:", min_value=0, step=1, key=f"answer_input_{st.session_state.question_count}")
     with col2:
         st.markdown("<br>", unsafe_allow_html=True)
         submit_answer = st.button("✅ Antwoord", type="primary")
@@ -80,7 +84,7 @@ else:
             "message": feedback,
             "question": st.session_state.current_question,
             "answer": user_answer,
-            "correct_answer": None if correct else st.session_state.current_answer
+            "correct_answer": None
         }]
 
         
