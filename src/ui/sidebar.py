@@ -42,7 +42,18 @@ def render_sidebar():
 
         # Store selected operations in session state
         if 'selected_operations' not in st.session_state:
-            st.session_state.selected_operations = ["Optellen", "Aftrekken"]
+            st.session_state.selected_operations = [
+                "Optellen", 
+                "Aftrekken",
+                "Helft en kwart",
+                "Tafel van 2",
+                "Tafel van 3",
+                "Tafel van 4",
+                "Tafel van 5",
+                "Tafel van 6",
+                "Tafel van 8",
+                "Tafel van 10"
+                ]
 
         selected = st.multiselect(
             "Selecteer oefeningen:",

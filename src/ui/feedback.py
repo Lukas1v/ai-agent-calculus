@@ -11,5 +11,5 @@ def render_feedback(agent_name):
                 st.success(f"{agent_name}: {feedback['message']}")
             else:
                 st.error(f"{agent_name}: {feedback['message']}")
-                if "correct_answer" in feedback:
-                    st.info(f"Het juiste antwoord was: {feedback['correct_answer']}")
+                # if "correct_answer" in feedback:
+                #     st.info(f"Het juiste antwoord was: {feedback['correct_answer']}")
